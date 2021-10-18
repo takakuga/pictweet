@@ -50,7 +50,7 @@ RSpec.describe 'ユーザー新規登録', type: :system do
         find('input[name="commit"]').click
       }.to change { User.count }.by(0)
       # 新規登録ページへ戻されることを確認する
-      expect(current_path).to eq user_registration_path
+      expect(current_path).to eq(user_registration_path)
     end
   end
 end
@@ -86,11 +86,18 @@ RSpec.describe 'ログイン', type: :system do
   context 'ログインができないとき' do
     it '保存されているユーザーの情報と合致しないとログインができない' do
       # トップページに移動する
+      visit root_path
       # トップページにログインページへ遷移するボタンがあることを確認する
+      expect(page).to have_content('ログイン')
       # ログインページへ遷移する
+      visit new_user_session_path
       # ユーザー情報を入力する
+      fill_in 'Email', with: ''
+      fill_in 'Password', with: ''
       # ログインボタンを押す
+      find('input[name="commit"]').click
       # ログインページへ戻されることを確認する
+      expect(current_path).to eq(new_user_session_path)
     end
   end
 end
