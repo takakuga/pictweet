@@ -49,10 +49,11 @@ end
 
 RSpec.describe 'ツイート編集', type: :system do
   before do
-    @tweet_text1 = FactoryBot.create(:tweet)
-    @tweet_text2 = FactoryBot.create(:tweet)
+    @tweet1 = FactoryBot.create(:tweet)
+    @tweet2 = FactoryBot.create(:tweet)
   end
   context 'ツイート編集ができるとき' do
+    it 'ログインしたユーザーは自分が投稿したツイートの編集ができる' do
     # ツイート1を投稿したユーザーでログインする
     visit new_user_session_path
     fill_in 'Email', with: @tweet1.user.email
