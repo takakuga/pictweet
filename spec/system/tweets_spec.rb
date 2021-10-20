@@ -181,17 +181,6 @@ RSpec.describe 'ツイート削除', type: :system do
   end
 end
 
-
-
-
-
-
-
-
-
-
-
-
 RSpec.describe 'ツイート詳細', type: :system do
   before do
     @tweet = FactoryBot.create(:tweet)
